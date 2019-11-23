@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ifsul.com.br.notes.SignUpActivity">
+    tools:context="ifsul.com.br.notes.activities.SignUpActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText10"
+        android:layout_below="@+id/et_confirma_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="21dp"
         android:fontFamily="@font/roboto"
@@ -24,10 +24,10 @@
         tools:layout_editor_absoluteY="231dp" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/et_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/tv_initial_info"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:ems="10"
@@ -36,11 +36,11 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/et_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText5"
-        android:layout_below="@+id/editText5"
+        android:layout_alignStart="@+id/et_full_name"
+        android:layout_below="@+id/et_full_name"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -48,11 +48,11 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/et_confirm_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText6"
-        android:layout_below="@+id/editText6"
+        android:layout_alignStart="@+id/et_email"
+        android:layout_below="@+id/et_email"
         android:layout_marginTop="17dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -60,11 +60,11 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText7"
-        android:layout_below="@+id/editText7"
+        android:layout_alignStart="@+id/et_confirm_email"
+        android:layout_below="@+id/et_confirm_email"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -72,11 +72,11 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/et_confirma_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText9"
-        android:layout_below="@+id/editText9"
+        android:layout_alignStart="@+id/et_password"
+        android:layout_below="@+id/et_password"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -84,7 +84,7 @@
         android:inputType="textPassword" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_initial_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
