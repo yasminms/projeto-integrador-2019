@@ -1,8 +1,11 @@
 package ifsul.com.br.notes.activities;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -52,5 +55,17 @@ public class NotesActivity extends ListActivity {
                 Toast.makeText(NotesActivity.this, "Falha na comunicação. Tente novamente.", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+
+        super.onListItemClick(l, v, position, id);
+
+        final Intent intent = new Intent(NotesActivity.this, EditNoteActivity.class);
+        intent.putExtra("note", notes.get(position));
+
+        startActivity(intent);
+        finish();
     }
 }

@@ -18,6 +18,7 @@ public class NoteDTO implements Serializable {
 
     private static final long serialVersionUID = -4220984636650157972L;
 
+    private Integer id;
     private String title;
     private String text;
     private String creationTimestamp;

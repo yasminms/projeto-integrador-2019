@@ -10,6 +10,7 @@ public final class NoteDTOMapper {
     public static NoteDTO apply(final Note note) {
 
         return NoteDTO.builder()
+                .id(note.getId())
                 .title(note.getTitle())
                 .text(note.getText())
                 .creationTimestamp(localDateTimeToString(note.getCreationTimestamp()))
