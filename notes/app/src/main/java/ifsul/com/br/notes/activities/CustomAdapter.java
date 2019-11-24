@@ -44,16 +44,19 @@ public class CustomAdapter extends ArrayAdapter<NoteDTO> {
 
         final NoteDTO note = notes.get(position);
 
-        if (note.getTitle().length() >= MAX_TITLE_LENGTH) {
-            note.setTitle(note.getTitle().substring(0, MAX_TITLE_LENGTH) + "...");
+        String title = note.getTitle();
+        String text = note.getText();
+
+        if (title.length() >= MAX_TITLE_LENGTH) {
+            title = title.substring(0, MAX_TITLE_LENGTH) + "...";
         }
 
-        if (note.getText().length() >= MAX_TEXT_LENGTH) {
-            note.setText(note.getText().substring(0, MAX_TEXT_LENGTH) + "...");
+        if (text.length() >= MAX_TEXT_LENGTH) {
+            text = text.substring(0, MAX_TEXT_LENGTH) + "...";
         }
 
-        tvTitle.setText(note.getTitle());
-        tvText.setText(note.getText());
+        tvTitle.setText(title);
+        tvText.setText(text);
         tvUpdate.setText(note.getUpdateTimestamp());
 
         return view;

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="ifsul.com.br.notes.activities.NoteActivity">
+
+    <EditText
+        android:id="@+id/et_title"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/bt_back"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Título *"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/et_description"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/et_title"
+        android:background="@drawable/border"
+        android:fontFamily="@font/roboto"
+        android:gravity="top"
+        android:hint="Descrição"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:padding="15dp"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/bt_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/et_description"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/roboto"
+        android:text="Adicionar"
+        android:textColor="@color/colorWhite"
+        android:windowSoftInputMode="adjustPan" />
+
+    <Button
+        android:id="@+id/bt_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_add"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:fontFamily="@font/roboto"
+        android:text="Deletar anotação" />
+
+    <ImageButton
+        android:id="@+id/bt_back"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/left_arrow" />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bt_back"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logo_mynotes" />
+</RelativeLayout>
