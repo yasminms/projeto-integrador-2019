@@ -24,7 +24,6 @@ public class FindAllNotesService {
     public List<NoteDTO> findAll() {
 
         final User user = findUserByEmailService.findByEmail(getUser().getEmail());
-
         return noteRepository.findAll(user).stream().map(NoteDTOMapper::apply).collect(Collectors.toList());
     }
 

@@ -16,4 +16,10 @@ public interface NoteContract {
     @ApiOperation("Lista todas anotações do usuário logado")
     List<NoteDTO> findAll();
 
+    @ApiOperation("Deleta uma anotação")
+    void delete(Integer id);
+
+    @ApiOperation("Atualiza uma anotação existente")
+    void update(Integer id, NoteRequest request);
+
 }

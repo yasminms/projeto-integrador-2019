@@ -25,8 +25,6 @@ public class SaveUserService {
 
     public UserDTO save(final UserRegisterRequest request) {
 
-        log.info("Inserindo novo usuário: {}", request.getEmail());
-
         User user = userRepository.findByEmail(request.getEmail());
 
         if (nonNull(user)) {
