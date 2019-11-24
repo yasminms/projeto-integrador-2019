@@ -1,27 +1,24 @@
 package ifsul.com.br.notes.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.ConfirmEmail;
-import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Email;
-import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.util.List;
 
 import ifsul.com.br.notes.R;
-import ifsul.com.br.notes.domain.UserDTO;
-import ifsul.com.br.notes.domain.UserRegisterRequest;
+import ifsul.com.br.notes.domain.AuthRequest;
+import ifsul.com.br.notes.domain.AuthResponse;
 import ifsul.com.br.notes.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,37 +26,31 @@ import retrofit2.Response;
 
 import static ifsul.com.br.notes.utils.RetrofitUtils.retrofit;
 
-public class SignUpActivity extends AppCompatActivity implements com.mobsandgeeks.saripaar.Validator.ValidationListener {
+public class SignInActivity extends AppCompatActivity implements com.mobsandgeeks.saripaar.Validator.ValidationListener {
 
-    private Button btRegister;
-    private ImageButton btBack;
-
-    @Length(min = 3, message = "Nome informado deve ter no mínimo 3 caracteres")
-    private EditText etFullName;
+    private Button btSignUp;
+    private Button btSignIn;
 
     @Email(message = "Informe um e-mail válido")
     private EditText etEmail;
 
-    @ConfirmEmail(message = "E-mail diferente do informado anteriormente")
-    private EditText etConfirmEmail;
-
-    @Password(min = 4)
+    @Password(min = 4, message = "Senha deve conter ao menos 4 caracteres")
     private EditText etPassword;
-
-    @ConfirmPassword(message = "Senha diferente da informada anteriormente")
-    private EditText etConfirmPassword;
 
     private Validator validator;
     private UserService userService;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_in);
 
         componentsInitializer();
 
-        btRegister.setOnClickListener(new View.OnClickListener() {
+        btSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -67,59 +58,59 @@ public class SignUpActivity extends AppCompatActivity implements com.mobsandgeek
             }
         });
 
-        btBack.setOnClickListener(new View.OnClickListener() {
+        btSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                finish();
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
-
     }
 
     private void componentsInitializer() {
-        btRegister = findViewById(R.id.bt_register);
-        btBack = findViewById(R.id.bt_back);
-        etFullName = findViewById(R.id.et_full_name);
+        btSignUp = findViewById(R.id.bt_signup);
+        btSignIn = findViewById(R.id.bt_signin);
         etEmail = findViewById(R.id.et_email);
-        etConfirmEmail = findViewById(R.id.et_confirm_email);
         etPassword = findViewById(R.id.et_password);
-        etConfirmPassword = findViewById(R.id.et_confirm_password);
         validator = new Validator(this);
         validator.setValidationListener(this);
         userService = retrofit.create(UserService.class);
+        sharedPreferences = getSharedPreferences("mynotes", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     @Override
     public void onValidationSucceeded() {
 
-        final UserRegisterRequest request = UserRegisterRequest.builder()
-                .fullName(etFullName.getText().toString())
+        final AuthRequest request = AuthRequest.builder()
                 .email(etEmail.getText().toString())
                 .password(etPassword.getText().toString())
                 .build();
 
-        userService.register(request).enqueue(new Callback<UserDTO>() {
+        userService.auth(request).enqueue(new Callback<AuthResponse>() {
             @Override
-            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
 
                 if (response.isSuccessful()) {
 
-                    Toast.makeText(SignUpActivity.this, "Cadastro efetuado com sucesso.", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
-                    finish();
+                    editor.putBoolean("authenticated", true);
+                    editor.putString("token", response.body().getToken());
+                    editor.commit();
+
+                    Toast.makeText(SignInActivity.this, "Autenticado com sucesso.", Toast.LENGTH_LONG).show();
                 } else {
 
-                    Toast.makeText(SignUpActivity.this, "E-mail em uso. Tente outro diferente.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignInActivity.this, "E-mail ou senha incorreto(s).", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UserDTO> call, Throwable t) {
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
 
-                Toast.makeText(SignUpActivity.this, "Falha na comunicação. Tente novamente.", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignInActivity.this, "Falha na comunicação. Tente novamente.", Toast.LENGTH_LONG).show();
             }
         });
+
     }
 
     @Override
