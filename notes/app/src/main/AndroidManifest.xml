@@ -25,7 +25,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".activities.SignUpActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.NotesActivity"></activity>
     </application>
 
 </manifest>

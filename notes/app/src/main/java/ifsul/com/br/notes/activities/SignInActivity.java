@@ -2,8 +2,8 @@ package ifsul.com.br.notes.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,7 +97,8 @@ public class SignInActivity extends AppCompatActivity implements com.mobsandgeek
                     editor.putString("token", response.body().getToken());
                     editor.commit();
 
-                    Toast.makeText(SignInActivity.this, "Autenticado com sucesso.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(SignInActivity.this, NotesActivity.class));
+                    finish();
                 } else {
 
                     Toast.makeText(SignInActivity.this, "E-mail ou senha incorreto(s).", Toast.LENGTH_LONG).show();
