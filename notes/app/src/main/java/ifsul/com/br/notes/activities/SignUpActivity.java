@@ -43,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity implements com.mobsandgeek
     @ConfirmEmail(message = "E-mail diferente do informado anteriormente")
     private EditText etConfirmEmail;
 
-    @Password(min = 4)
+    @Password(min = 4, message = "Senha deve ter no mínimo 4 caracteres")
     private EditText etPassword;
 
     @ConfirmPassword(message = "Senha diferente da informada anteriormente")
