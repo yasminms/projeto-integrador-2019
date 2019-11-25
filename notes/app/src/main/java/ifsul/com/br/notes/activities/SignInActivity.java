@@ -97,7 +97,7 @@ public class SignInActivity extends AppCompatActivity implements com.mobsandgeek
                     editor.putString("token", response.body().getToken());
                     editor.commit();
 
-                    startActivity(new Intent(SignInActivity.this, NotesActivity.class));
+                    startActivity(new Intent(SignInActivity.this, MainActivity.class));
                     finish();
                 } else {
 

@@ -77,7 +77,7 @@ public class EditNoteActivity extends AppCompatActivity implements Validator.Val
 
                         if (response.isSuccessful()) {
 
-                            startActivity(new Intent(EditNoteActivity.this, NotesActivity.class));
+                            startActivity(new Intent(EditNoteActivity.this, MainActivity.class));
                             finish();
                         } else {
 
@@ -98,7 +98,7 @@ public class EditNoteActivity extends AppCompatActivity implements Validator.Val
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(EditNoteActivity.this, NotesActivity.class));
+                startActivity(new Intent(EditNoteActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -137,7 +137,7 @@ public class EditNoteActivity extends AppCompatActivity implements Validator.Val
 
                 if (response.isSuccessful()) {
 
-                    startActivity(new Intent(EditNoteActivity.this, NotesActivity.class));
+                    startActivity(new Intent(EditNoteActivity.this, MainActivity.class));
                     finish();
                 } else {
 

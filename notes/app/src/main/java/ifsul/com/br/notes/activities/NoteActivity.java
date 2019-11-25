@@ -1,11 +1,9 @@
 package ifsul.com.br.notes.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +65,7 @@ public class NoteActivity extends AppCompatActivity implements Validator.Validat
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(NoteActivity.this, NotesActivity.class));
+                startActivity(new Intent(NoteActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -107,7 +105,7 @@ public class NoteActivity extends AppCompatActivity implements Validator.Validat
 
                 if (response.isSuccessful()) {
 
-                    startActivity(new Intent(NoteActivity.this, NotesActivity.class));
+                    startActivity(new Intent(NoteActivity.this, MainActivity.class));
                     finish();
                 } else {
 
