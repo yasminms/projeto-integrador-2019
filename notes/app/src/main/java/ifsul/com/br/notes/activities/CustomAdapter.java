@@ -51,8 +51,15 @@ public class CustomAdapter extends ArrayAdapter<NoteDTO> {
             title = title.substring(0, MAX_TITLE_LENGTH) + "...";
         }
 
-        if (text.length() >= MAX_TEXT_LENGTH) {
-            text = text.substring(0, MAX_TEXT_LENGTH) + "...";
+        if (text.equalsIgnoreCase("")) {
+
+            text = "[Sem descrição]";
+        } else {
+
+            if (text.length() >= MAX_TEXT_LENGTH) {
+
+                text = text.substring(0, MAX_TEXT_LENGTH) + "...";
+            }
         }
 
         tvTitle.setText(title);

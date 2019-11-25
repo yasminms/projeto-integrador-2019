@@ -9,4 +9,7 @@ public interface UserContract {
     @ApiOperation("Deleta conta do usuário logado")
     void delete();
 
+    @ApiOperation("Atualuza informações do usuário logado")
+    void update(String name);
+
 }

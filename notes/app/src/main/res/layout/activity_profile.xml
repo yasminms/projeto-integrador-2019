@@ -74,6 +74,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/roboto"
+        android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:textStyle="bold" />
 
