@@ -25,6 +25,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static ifsul.com.br.notes.utils.RetrofitUtils.retrofit;
+import static ifsul.com.br.notes.utils.UserUtils.getToken;
+import static java.util.Objects.nonNull;
 
 public class SignInActivity extends AppCompatActivity implements com.mobsandgeeks.saripaar.Validator.ValidationListener {
 
@@ -47,6 +49,12 @@ public class SignInActivity extends AppCompatActivity implements com.mobsandgeek
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        if (getToken(this) != null) {
+
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         componentsInitializer();
 
@@ -93,6 +101,8 @@ public class SignInActivity extends AppCompatActivity implements com.mobsandgeek
 
                 if (response.isSuccessful()) {
 
+                    editor.putString("name", response.body().getUser().getFullName());
+                    editor.putString("email", response.body().getUser().getEmail());
                     editor.putBoolean("authenticated", true);
                     editor.putString("token", response.body().getToken());
                     editor.commit();

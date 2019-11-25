@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NoteActivity.class));
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 finish();
             }
         });
